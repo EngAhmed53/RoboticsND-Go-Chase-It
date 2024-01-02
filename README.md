@@ -45,7 +45,7 @@ $ catkin_init_workspace
 
 #### Clone the project in catkin_ws/src/.
 ```sh
-$ git clone https://github.com//RoboticsND-Go-Chase-It.git
+$ git clone https://github.com/EngAhmed53/RoboticsND-Go-Chase-It.git
 ```
 
 #### Build the packages.
