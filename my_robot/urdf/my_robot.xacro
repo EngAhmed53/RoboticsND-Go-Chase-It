@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="my_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find my_robot)/urdf/my_robot.gazebo" />
+
+  <gazebo reference="leftwheel">
+      <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="rightwheel">
+      <material>Gazebo/Green</material>
+  </gazebo>
+
+  <gazebo reference="camera">
+      <material>Gazebo/Red</material>
+  </gazebo>
+
+  <gazebo reference="base_link">
+      <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <link name="robot_footprint"></link>
+
+  <joint name="robot_footprint_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="robot_footprint"/>
+    <child link="base_link" />
+  </joint>
+
+   <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-5.55111512312578E-17 5.55111512312578E-17 -0.025"
+        rpy="0 0 0" />
+      <mass
+        value="7.8222342311712" />
+      <inertia
+        ixx="0.0537018422736966"
+        ixy="3.24674209290395E-17"
+        ixz="2.51862423422907E-19"
+        iyy="0.202301909363961"
+        iyz="-4.51750905202295E-19"
+        izz="0.252679986550501" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://my_robot/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://my_robot/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+    <collision name='back_caster_collision'>
+      <origin xyz="-0.15 0 -0.05" rpy=" 0 0 0"/>
+      <geometry>
+        <sphere radius="0.0499"/>
+      </geometry>
+    </collision>
+
+    <visual name='back_caster_visual'>
+      <origin xyz="-0.15 0 -0.05" rpy=" 0 0 0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </visual>
+
+    <collision name='front_caster_collision'>
+      <origin xyz="0.15 0 -0.05" rpy=" 0 0 0"/>
+      <geometry>
+        <sphere radius="0.0499"/>
+      </geometry>
+    </collision>
+
+    <visual name='front_caster_visual'>
+      <origin xyz="0.15 0 -0.05" rpy=" 0 0 0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+  <link
+    name="leftwheel">
+    <inertial>
+      <origin
+        xyz="1.3878E-17 -0.025313 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.89098" />
+      <inertia
+        ixx="0.0014378"
+        ixy="-3.5354E-20"
+        ixz="-2.8625E-36"
+        iyy="0.0024854"
+        iyz="-2.978E-36"
+        izz="0.0014378" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://my_robot/meshes/leftwheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.075" length="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="leftjoint"
+    type="continuous">
+    <origin
+      xyz="0 0.21 -0.025"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="leftwheel" />
+    <axis
+      xyz="0 1 0" />
+      <limit effort="10000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+  <link
+    name="rightwheel">
+    <inertial>
+      <origin
+        xyz="1.3878E-17 -0.025313 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.89098" />
+      <inertia
+        ixx="0.0014378"
+        ixy="-1.8848E-19"
+        ixz="-1.1825E-19"
+        iyy="0.0024854"
+        iyz="-1.7407E-20"
+        izz="0.0014378" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://my_robot/meshes/rightwheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+   <collision>
+      <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
+      <geometry>
+        <cylinder radius="0.075" length="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rightjoint"
+    type="continuous">
+    <origin
+      xyz="0 -0.21 -0.025"
+      rpy="0 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="rightwheel" />
+    <axis
+      xyz="0 -1 0" />
+      <limit effort="10000" velocity="1000"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+  
+  <link
+    name="camera">
+    <inertial>
+      <origin
+        xyz=".05 .05 .05"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="1E-6"
+        ixy="0"
+        ixz="0"
+        iyy="1E-6"
+        iyz="0"
+        izz="1E-6" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size=".05 .05 .05"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size=".05 .05 .05"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.25 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+  <!-- Lidar -->
+  <link
+    name="hokuyo">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="1E-5" />
+      <inertia
+        ixx="1E-6"
+        ixy="0"
+        ixz="0"
+        iyy="1E-6"
+        iyz="0"
+        izz="1E-6" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://my_robot/meshes/hokuyo.dae" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size=".1 .1 .1"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="hokuyo_joint"
+    type="fixed">
+    <origin
+      xyz="0.15 0 0.035"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="hokuyo" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+</robot>
